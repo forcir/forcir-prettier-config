@@ -5,7 +5,7 @@
         <img alt="Forcir Prettier Config" src="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png?0">
     </picture>
 </div>
-<p align="center"><strong>Shared configuration for a consistent Prettier experience in Forcir codebases.</strong></p>
+<p align="center"><strong>Shared configuration for a consistent experience using Prettier.</strong></p>
 <p align="center"></p>
 
 ## Install
