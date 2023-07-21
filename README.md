@@ -1,8 +1,8 @@
 <p align="center"></p>
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/dark.png?0">
-        <img alt="Forcir Prettier Config" src="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png?0">
+        <source media="(prefers-color-scheme: dark)" srcset="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/dark.png?2">
+        <img alt="Forcir Prettier Config" src="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png?2">
     </picture>
 </div>
 <p align="center"><strong>Shared configuration for a consistent experience using Prettier.</strong></p>
