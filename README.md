@@ -1,11 +1,11 @@
 <p align="center"></p>
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png">
-        <img alt="Object Deep Merge Title Image (Logo)" src="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png">
+        <source media="(prefers-color-scheme: dark)" srcset="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/dark.png">
+        <img alt="Forcir Prettier Config" src="https://cdn.forcir.com/oss/forcir-prettier-config/assets/images/logos/light.png">
     </picture>
 </div>
-<p align="center"><strong></strong></p>
+<p align="center"><strong>Shared configuration for a consistent Prettier experience in Forcir codebases.</strong></p>
 <p align="center"></p>
 
 ## Install
