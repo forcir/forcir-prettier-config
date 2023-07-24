@@ -5,9 +5,7 @@
     "license": "MIT",
     "type": "module",
     "main": "./.prettierrc.json",
-    "files": [
-        "./.prettierrc.json"
-    ],
+    "files": ["./.prettierrc.json"],
     "scripts": {
         "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\"",
         "format:check": "prettier --check \"**/*.{js,json,md,ts,tsx}\""
