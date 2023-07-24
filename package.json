@@ -1,19 +1,20 @@
 {
-  "name": "@forcir/prettier-config",
-  "version": "1.0.0",
-  "private": false,
-  "license": "MIT",
-  "type": "module",
-  "main": "./.prettierrc.json",
-  "files": [
-    "./.prettierrc.json"
-  ],
-  "scripts": {
-    "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
-  },
-  "prettier": "./.prettierrc.json",
-  "devDependencies": {
-    "prettier": "3.0.0"
-  },
-  "packageManager": "pnpm@8.6.10"
+    "name": "@forcir/prettier-config",
+    "version": "1.0.0",
+    "private": false,
+    "license": "MIT",
+    "type": "module",
+    "main": "./.prettierrc.json",
+    "files": [
+        "./.prettierrc.json"
+    ],
+    "scripts": {
+        "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\"",
+        "format:check": "prettier --check \"**/*.{js,json,md,ts,tsx}\""
+    },
+    "prettier": "./.prettierrc.json",
+    "devDependencies": {
+        "prettier": "3.0.0"
+    },
+    "packageManager": "pnpm@8.6.10"
 }

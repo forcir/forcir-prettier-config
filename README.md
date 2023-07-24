@@ -29,13 +29,13 @@ npm install -DE prettier @forcir/prettier-config
 
 ```jsonc
 {
-  // ...
-  "prettier": "@forcir/prettier-config",
-  // ...
-  "scripts": {
     // ...
-    "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
+    "prettier": "@forcir/prettier-config",
     // ...
-  }
+    "scripts": {
+        // ...
+        "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
+        // ...
+    }
 }
 ```
