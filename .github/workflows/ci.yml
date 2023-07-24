@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04]
-        node: [14]
+        node: [20]
     steps:
       - name: setup node v${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -17,6 +17,9 @@ jobs:
 
       - name: checkout repository
         uses: actions/checkout@v3
+
+      - name: install pnpm
+        uses: pnpm/action-setup@v2
 
       - name: fetch main branch from origin
         run: git fetch --no-tags --prune --depth=1 origin +refs/heads/main:refs/remotes/origin/main
