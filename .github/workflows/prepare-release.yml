@@ -1,0 +1,121 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+env:
+  CI: true
+
+permissions:
+  contents: read
+
+jobs:
+  Setup:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        node: [20]
+    steps:
+      - name: node setup (v${{ matrix.node }})
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: repository checkout
+        uses: actions/checkout@v3
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2
+
+      - name: pnpm node_modules cache
+        uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
+
+      - name: dependencies install
+        run: pnpm install --frozen-lockfile
+
+  Format:
+    needs: [Setup]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        node: [20]
+    steps:
+      - name: node setup (v${{ matrix.node }})
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: repository checkout
+        uses: actions/checkout@v3
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2
+
+      - name: pnpm node_modules cache
+        uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
+
+      - name: code format check
+        run: pnpm format:check
+
+  Release:
+    needs: [Format]
+    permissions:
+      contents: write # Required to create release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        node: [20]
+    steps:
+      - name: repository checkout
+        uses: actions/checkout@v3
+
+      - name: repository tags fetch
+        run: git fetch --tags -f
+
+      - name: Resolve version
+        id: vars
+        run: |
+          echo "TAG_NAME=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: node setup (v${{ matrix.node }})
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2
+
+      - name: pnpm node_modules cache
+        uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
+
+      - name: dependencies install
+        run: pnpm install --frozen-lockfile
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          tag_name: ${{ env.TAG_NAME }}
+          body: "worked"

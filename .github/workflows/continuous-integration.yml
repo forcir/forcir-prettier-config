@@ -2,6 +2,12 @@ name: Continuous Integration
 
 on: push
 
+env:
+  CI: true
+
+permissions:
+  contents: read
+
 jobs:
   Setup:
     runs-on: ${{ matrix.os }}
