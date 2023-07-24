@@ -1,0 +1,40 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  Setup:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        node: [14]
+    steps:
+      - name: setup node v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: fetch main branch from origin
+        run: git fetch --no-tags --prune --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+
+      - name: node_modules cache
+        uses: actions/cache@v3
+        id: workspace-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
+
+      - name: install dependancies
+        run: pnpm install --frozen-lockfile
+#   Format:
+
+#   Lint:
+
+#   Test:
+
+#   Build:
