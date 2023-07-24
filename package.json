@@ -14,5 +14,6 @@
   "prettier": "./.prettierrc.json",
   "devDependencies": {
     "prettier": "3.0.0"
-  }
+  },
+  "packageManager": "pnpm@8.6.10"
 }
