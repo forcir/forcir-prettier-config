@@ -34,7 +34,8 @@ npm install -DE prettier @forcir/prettier-config
     // ...
     "scripts": {
         // ...
-        "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
+        "format": "prettier --check \"**/*.{js,json,md,ts,tsx}\"",
+        "format:write": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
         // ...
     }
 }

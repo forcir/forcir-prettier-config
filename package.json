@@ -8,8 +8,8 @@
     "files": ["./.prettierrc.json"
     ],
     "scripts": {
-        "format": "prettier --write \"**/*.{js,json,md,ts,tsx}\"",
-        "format:check": "prettier --check \"**/*.{js,json,md,ts,tsx}\""
+        "format": "prettier --check \"**/*.{js,json,md,ts,tsx}\"",
+        "format:write": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
     },
     "prettier": "./.prettierrc.json",
     "devDependencies": {
