@@ -30,22 +30,42 @@ jobs:
   format:
     name: Format
     runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
     steps:
       - run: pnpm --if-present format
 
   lint:
     name: Lint
     runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
     steps:
       - run: pnpm --if-present lint
   test:
     name: Test
     runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
     steps:
       - run: pnpm --if-present test
 
   build:
     name: Build
     runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
     steps:
       - run: pnpm --if-present build
