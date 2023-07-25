@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node.js (v${{ matrix.node-version }})
+      - uses: pnpm/action-setup@v2
+      - name: Setup Node (v${{ matrix.node-version }})
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - uses: pnpm/action-setup@v2
       - run: pnpm install --frozen-lockfile
       - run: pnpm --if-present format
       - run: pnpm --if-present lint
