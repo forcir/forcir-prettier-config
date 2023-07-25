@@ -1,6 +1,6 @@
 name: Continuous Integration
 
-on: push
+on: [push]
 
 env:
   CI: true
@@ -9,61 +9,21 @@ permissions:
   contents: read
 
 jobs:
-  Setup:
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        os: [ubuntu-20.04]
-        node: [20]
+        node-version: [18.x, 20.x]
+
     steps:
-      - name: node setup (v${{ matrix.node }})
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-
-      - name: repository checkout
-        uses: actions/checkout@v3
-
-      - name: pnpm setup
-        uses: pnpm/action-setup@v2
-
-      - name: pnpm node_modules cache
-        uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
-
-      - name: dependencies install
-        run: pnpm install --frozen-lockfile
-
-  Format:
-    needs: [Setup]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-20.04]
-        node: [20]
-    steps:
-      - name: node setup (v${{ matrix.node }})
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: repository checkout
-        uses: actions/checkout@v3
-
-      - name: pnpm setup
-        uses: pnpm/action-setup@v2
-
-      - name: pnpm node_modules cache
-        uses: actions/cache@v3
-        id: workspace-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.node }}-pnpm-
-
-      - name: code format check
-        run: pnpm format:check
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm run build --if-present
+      - run: pnpm test
