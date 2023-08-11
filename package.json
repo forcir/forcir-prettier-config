@@ -1,6 +1,6 @@
 {
     "name": "@forcir/prettier-config",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "private": false,
     "description": "Shared configuration for a consistent experience using Prettier.",
     "license": "MIT",
@@ -18,7 +18,7 @@
         "prettier": "3.0.1"
     },
     "peerDependencies": {
-        "prettier": "latest"
+        "prettier": ">=3.0"
     },
     "peerDependenciesMeta": {
         "prettier": {
