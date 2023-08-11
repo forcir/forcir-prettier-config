@@ -9,12 +9,20 @@
         "./.prettierrc.json"
     ],
     "scripts": {
-        "format": "prettier --check \"**/*.{js,json,md,ts,tsx}\"",
-        "format:fix": "prettier --write \"**/*.{js,json,md,ts,tsx}\""
+        "format": "prettier --check \"**/*.{cjs,js,json,md,ts,tsx}\"",
+        "format:fix": "prettier --write \"**/*.{cjs,js,json,md,ts,tsx}\""
     },
     "prettier": "./.prettierrc.json",
     "devDependencies": {
         "prettier": "3.0.0"
     },
-    "packageManager": "pnpm@8.6.10"
+    "peerDependencies": {
+        "prettier": "latest"
+    },
+    "peerDependenciesMeta": {
+        "prettier": {
+            "optional": false
+        }
+    },
+    "packageManager": "pnpm@8.6.11"
 }
