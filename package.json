@@ -1,7 +1,8 @@
 {
     "name": "@forcir/prettier-config",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": false,
+    "description": "Shared configuration for a consistent experience using Prettier.",
     "license": "MIT",
     "type": "module",
     "main": "./.prettierrc.json",
