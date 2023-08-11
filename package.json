@@ -14,7 +14,7 @@
     },
     "prettier": "./.prettierrc.json",
     "devDependencies": {
-        "prettier": "3.0.0"
+        "prettier": "3.0.1"
     },
     "peerDependencies": {
         "prettier": "latest"
